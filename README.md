@@ -1,7 +1,7 @@
 # Soup Playlist Bot
 Create albums of music for other music bots which can then be ran with a single command.
 # Install (Windows only, not tested on other platforms)
-This bot requires Python 3.x and was tested on Python 3.5.2.
+This bot requires Python 3.x and was tested on Python 3.5.2. [The Python download can be found here](https://www.python.org/downloads/)
 1) Download or clone the bot
 2) Run Install.bat
 3) Follow instructions in command prompt
