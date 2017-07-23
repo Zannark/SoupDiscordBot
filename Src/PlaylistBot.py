@@ -9,6 +9,7 @@ import random
 CommandDelay = 2
 
 ###
+
 Client = discord.Client()
 Data = None
 UserName = ""
