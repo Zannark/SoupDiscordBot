@@ -10,6 +10,8 @@ Providing that nothing went wrong the bot should be useable.
 
 Note: This bot uses [Discord.py](https://github.com/Rapptz/discord.py), there are more in depth instructions should you have issues with installing libraries required for the bot.
 
+**Warning: re-using the install script will overwrite both the albums and the settings files! Take care to not re-run them!**
+
 # Using the bot
 Run the bot using the Run.bat script.
 
