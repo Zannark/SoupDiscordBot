@@ -96,7 +96,7 @@ async def on_message(message):
                 Counter = 1
                 for Element in Data[Command[1]]:                    
                     await Client.send_message(message.channel, str(Counter) + ". " + Element)
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(1.5)
                     Counter += 1
             else:
                 await Client.send_message(message.channel, Command[1] + " does not exsist") 
@@ -106,7 +106,7 @@ async def on_message(message):
             Counter = 1
             for Keys in Data:
                 await Client.send_message(message.channel, str(Counter) + ". " + Keys)
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(1.5)
                 Counter += 1
 
     elif message.content.startswith(".shuffle"):
@@ -119,7 +119,7 @@ async def on_message(message):
                 
                 for Element in Shuffled:
                     await Client.send_message(message.channel, PlayCommand + " " + Element)
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(1.5)
             else:
                 await Client.send_message(message.channel, Command[1] + " does not exsist") 
         else:
