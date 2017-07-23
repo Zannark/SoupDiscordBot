@@ -8,7 +8,7 @@ This bot requires Python 3.x and was tested on Python 3.5.2.
 
 Providing that nothing went wrong the bot should be useable.
 
-Note: This bot uses [Discord.py](https://github.com/Rapptz/discord.py), there are more in depth instructions should you have issues with installing the bot.
+Note: This bot uses [Discord.py](https://github.com/Rapptz/discord.py), there are more in depth instructions should you have issues with installing libraries required for the bot.
 
 # Using the bot
 Run the bot using the Run.bat script.
