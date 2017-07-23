@@ -30,4 +30,6 @@ The delay between messages sent is 2 seconds, because some music bots don't pick
 #Change the 2 to another value. The value must be in seconds. 
 #You can have decimal values (e.g. 1.5 for one and a half seconds).
 CommandDelay = 2
+      V
+CommandDelay = 0.75
 ```
