@@ -4,6 +4,11 @@ import json
 import sys
 import random
 
+###
+
+CommandDelay = 2
+
+###
 Client = discord.Client()
 Data = None
 UserName = ""
@@ -106,7 +111,7 @@ async def on_message(message):
             Counter = 1
             for Keys in Data:
                 await Client.send_message(message.channel, str(Counter) + ". " + Keys)
-                await asyncio.sleep(1.5)
+                await asyncio.sleep(CommandDelay)
                 Counter += 1
 
     elif message.content.startswith(".shuffle"):
@@ -119,7 +124,7 @@ async def on_message(message):
                 
                 for Element in Shuffled:
                     await Client.send_message(message.channel, PlayCommand + " " + Element)
-                    await asyncio.sleep(1.5)
+                    await asyncio.sleep(CommandDelay)
             else:
                 await Client.send_message(message.channel, Command[1] + " does not exsist") 
         else:
@@ -133,7 +138,7 @@ async def on_message(message):
 
         for Element in Data[Album]:
             await Client.send_message(message.channel, PlayCommand + " " + Element)
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(CommandDelay)
 
     elif message.content.startswith(".help"):
         HelpMessage = "```\n"
