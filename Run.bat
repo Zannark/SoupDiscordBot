@@ -1,2 +1,2 @@
-PlaylistBot.py
+Src\\PlaylistBot.py
 Pause

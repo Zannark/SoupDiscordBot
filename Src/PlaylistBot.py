@@ -101,7 +101,7 @@ async def on_message(message):
             Counter = 1
             for Keys in Data:
                 await Client.send_message(message.channel, str(Counter) + ". " + Keys)
-                await asyncio.sleep(1)
+                await asyncio.sleep(0.5)
                 Counter += 1
 
     elif message.content.startswith(".shuffle"):
@@ -114,7 +114,7 @@ async def on_message(message):
                 
                 for Element in Shuffled:
                     await Client.send_message(message.channel, PlayCommand + " " + Element)
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(0.5)
             else:
                 await Client.send_message(message.channel, Command[1] + " does not exsist") 
         else:
@@ -128,7 +128,7 @@ async def on_message(message):
 
         for Element in Data[Album]:
             await Client.send_message(message.channel, PlayCommand + " " + Element)
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.5)
 
     elif message.content.startswith(".help"):
         HelpMessage = "```\n"
@@ -145,9 +145,6 @@ async def on_message(message):
         HelpMessage += "```"
         
         await Client.send_message(message.channel, HelpMessage)
-
-if not discord.opus.is_loaded():
-    discord.opus.load_opus('opus')
 
 with open("Data/Albums.json", mode="r") as JsonFile:
     Data = json.load(JsonFile)
