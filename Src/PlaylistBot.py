@@ -15,11 +15,16 @@ PlayCommand = ""
 async def on_ready():
     print("Album bot is ready for use!")
 
+    C = Client.get_channel(ChannelID)
+    await Client.join_voice_channel(C)
+
 @Client.event
 async def on_message(message):
     if message.content.startswith('.summon'):
         C = Client.get_channel(ChannelID)
-        await Client.join_voice_channel(C)
+
+        for i in Client.voice_clients:        
+            await i.move_to(message.author.voice.voice_channel)
     
     elif message.content.startswith('.add'):
         Command = message.content.split(' ')
@@ -133,7 +138,7 @@ async def on_message(message):
     elif message.content.startswith(".help"):
         HelpMessage = "```\n"
         HelpMessage += "-----Start Help-----\n"
-        HelpMessage += ".summon - summons the bot to the default channel\n"
+        HelpMessage += ".summon - summons the bot to the voice channel that the user is in\n"
         HelpMessage += ".create <Album name> - Creates a new empty album\n"
         HelpMessage += ".add <Album name> <Song name/Link> - Adds a new song to an album\n"
         HelpMessage += ".play <Album name> - Plays the album\n"
