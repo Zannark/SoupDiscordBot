@@ -14,7 +14,7 @@ Run the bot using the Run.bat script.
 | Command          | Useage           |
 | :-------------:  |:-------------:   |
 |.create [Album name] | Creates an empty album |
-| .summon        | summons the bot to the default channel |
+| .summon        | summons the bot to the voice channel that the user is in |
 | .add [Album name] [Song name/Link] |Adds a new song to an album |
 |.play [Album name] |Plays the album |
 |.random|Plays a random album|
