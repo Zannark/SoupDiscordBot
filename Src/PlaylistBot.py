@@ -105,7 +105,7 @@ async def on_message(message):
                     List += str(Counter) + ". " + Element + "\n"
                     Counter += 1
 
-                await Client.send_message(message.channel, Message)
+                await Client.send_message(message.channel, List)
             else:
                 await Client.send_message(message.channel, Command[1] + " does not exsist") 
         else:
