@@ -72,7 +72,7 @@ async def on_message(message):
             if Command[1] in Data:
                 for Element in Data[Command[1]]:
                     await Client.send_message(message.channel, PlayCommand + " " + Element)
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(CommandDelay)
             else:
                 await Client.send_message(message.channel, Command[1] + " does not exsist") 
         else:
@@ -98,22 +98,26 @@ async def on_message(message):
         if len(Command) == 2:
             if Command[1] in Data:
                 await Client.send_message(message.channel, "Songs in album " + Command[1]) 
-                
+
+                List = ""
                 Counter = 1
                 for Element in Data[Command[1]]:                    
-                    await Client.send_message(message.channel, str(Counter) + ". " + Element)
-                    await asyncio.sleep(1.5)
+                    List += str(Counter) + ". " + Element + "\n"
                     Counter += 1
+
+                await Client.send_message(message.channel, Message)
             else:
                 await Client.send_message(message.channel, Command[1] + " does not exsist") 
         else:
             await Client.send_message(message.channel, "Albums") 
-            
+
+            List = ""
             Counter = 1
             for Keys in Data:
-                await Client.send_message(message.channel, str(Counter) + ". " + Keys)
-                await asyncio.sleep(CommandDelay)
+                List += str(Counter) + ". " + Keys + "\n"
                 Counter += 1
+
+            await Client.send_message(message.channel, List)
 
     elif message.content.startswith(".shuffle"):
         Command = message.content.split(' ')
