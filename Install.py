@@ -8,8 +8,10 @@ if not os.path.exists("Data"):
 if not os.path.exists("Data/Albums.json"):
     with open("Data/Albums.json", mode="w") as Albums:
         Albums.write("{}")
+else:
+    print("Data/Albums.json already exists, if you wish for a new albums file rename or delete the current one.")
 
-if not os.path.exists("Data/Albums.json"):
+if not os.path.exists("Data/Data.dat"):
     with open("Data/Data.dat", mode="w") as DataFile:
         Email = input("Enter your email: ")
         Password = input("Enter your password: ")
@@ -20,3 +22,5 @@ if not os.path.exists("Data/Albums.json"):
         DataFile.write(Password + "\n")
         DataFile.write(ID + "\n")
         DataFile.write(Command)
+else:
+    print("Data/Data.dat already exists, if you wish for a new data file rename or delete the current one.")
