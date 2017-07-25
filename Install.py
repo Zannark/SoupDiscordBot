@@ -17,10 +17,12 @@ if not os.path.exists("Data/Data.dat"):
         Password = input("Enter your password: ")
         ID = input("Enter your default channel ID: ")
         Command = input("Enter the play command for your music bot (including prefix): ")
+        DefaultChannel = input("Enter the ID for the default channel you wish to type to: ")
 
         DataFile.write(Email + "\n")
         DataFile.write(Password + "\n")
         DataFile.write(ID + "\n")
-        DataFile.write(Command)
+        DataFile.write(Command + "\n")
+        DataFile.write(Channel)
 else:
     print("Data/Data.dat already exists, if you wish for a new data file rename or delete the current one.")

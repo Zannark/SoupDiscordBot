@@ -16,16 +16,20 @@ UserName = ""
 Password = ""
 ChannelID = ""
 PlayCommand = ""
+DefaultTextChannel = ""
+DefaultChannel = None
 
 @Client.event
 async def on_ready():
-    print("Album bot is ready for use!")
-
     C = Client.get_channel(ChannelID)
     await Client.join_voice_channel(C)
 
+    print("Album bot is ready for use!")
+
 @Client.event
 async def on_message(message):
+    DefaultChannel = Client.get_channel(DefaultTextChannel)
+    
     if message.content.startswith('.summon'):
         C = Client.get_channel(ChannelID)
 
@@ -47,23 +51,23 @@ async def on_message(message):
                 with open("Data/Albums.json", mode="w") as JsonFile:
                     json.dump(Data, JsonFile)                           
             except:
-                await Client.send_message(message.channel, message.author.name + ", no album by the name of '" + Command[1] + "'")
+                await Client.send_message(DefaultChannel, message.author.name + ", no album by the name of '" + Command[1] + "'")
         else:
-            await Client.send_message(message.channel, message.author.name + ", syntax is '.add <Album> <Link/Song name>'")
+            await Client.send_message(DefaultChannel, message.author.name + ", syntax is '.add <Album> <Link/Song name>'")
 
     elif message.content.startswith(".create"):
         Command = message.content.split(' ')
 
         if len(Command) == 2:
             if Command[1] in Data:
-                await Client.send_message(message.channel, Command[1] + " already exsists")
+                await Client.send_message(DefaultChannel, Command[1] + " already exsists")
             else:
                 Data[Command[1]] = []
 
             with open("Data/Albums.json", mode="w") as JsonFile:
                 json.dump(Data, JsonFile)  
         else:
-            await Client.send_message(message.channel, message.author.name + ", syntax is '.create <Album name>'")
+            await Client.send_message(DefaultChannel, message.author.name + ", syntax is '.create <Album name>'")
 
     elif message.content.startswith(".play"):
         Command = message.content.split(' ')
@@ -71,12 +75,12 @@ async def on_message(message):
         if len(Command) == 2:
             if Command[1] in Data:
                 for Element in Data[Command[1]]:
-                    await Client.send_message(message.channel, PlayCommand + " " + Element)
+                    await Client.send_message(DefaultChannel, PlayCommand + " " + Element)
                     await asyncio.sleep(CommandDelay)
             else:
-                await Client.send_message(message.channel, Command[1] + " does not exsist") 
+                await Client.send_message(DefaultChannel, Command[1] + " does not exsist") 
         else:
-            await Client.send_message(message.channel, message.author.name + ", syntax is '.play <Album name>'")
+            await Client.send_message(DefaultChannel, message.author.name + ", syntax is '.play <Album name>'")
 
     elif message.content.startswith(".remove"):
         Command = message.content.split(' ')
@@ -88,16 +92,16 @@ async def on_message(message):
                 with open("Data/Albums.json", mode="w") as JsonFile:
                     json.dump(Data, JsonFile)                
             else:
-                await Client.send_message(message.channel, Command[1] + " does not exsist")
+                await Client.send_message(DefaultChannel, Command[1] + " does not exsist")
         else:
-            await Client.send_message(message.channel, message.author.name + ", syntax is '.remove <Album name>'")
+            await Client.send_message(DefaultChannel, message.author.name + ", syntax is '.remove <Album name>'")
 
     elif message.content.startswith(".view"):
         Command = message.content.split(' ')
 
         if len(Command) == 2:
             if Command[1] in Data:
-                await Client.send_message(message.channel, "Songs in album " + Command[1]) 
+                await Client.send_message(DefaultChannel, "Songs in album " + Command[1]) 
 
                 List = ""
                 Counter = 1
@@ -105,11 +109,11 @@ async def on_message(message):
                     List += str(Counter) + ". " + Element + "\n"
                     Counter += 1
 
-                await Client.send_message(message.channel, List)
+                await Client.send_message(DefaultChannel, List)
             else:
-                await Client.send_message(message.channel, Command[1] + " does not exsist") 
+                await Client.send_message(DefaultChannel, Command[1] + " does not exsist") 
         else:
-            await Client.send_message(message.channel, "Albums") 
+            await Client.send_message(DefaultChannel, "Albums") 
 
             List = ""
             Counter = 1
@@ -117,7 +121,7 @@ async def on_message(message):
                 List += str(Counter) + ". " + Keys + "\n"
                 Counter += 1
 
-            await Client.send_message(message.channel, List)
+            await Client.send_message(DefaultChannel, List)
 
     elif message.content.startswith(".shuffle"):
         Command = message.content.split(' ')
@@ -128,12 +132,12 @@ async def on_message(message):
                 random.shuffle(Shuffled)
                 
                 for Element in Shuffled:
-                    await Client.send_message(message.channel, PlayCommand + " " + Element)
+                    await Client.send_message(DefaultChannel, PlayCommand + " " + Element)
                     await asyncio.sleep(CommandDelay)
             else:
-                await Client.send_message(message.channel, Command[1] + " does not exsist") 
+                await Client.send_message(DefaultChannel, Command[1] + " does not exsist") 
         else:
-            await Client.send_message(message.channel, message.author.name + ", syntax is '.shuffle <Album name>'")
+            await Client.send_message(DefaultChannel, message.author.name + ", syntax is '.shuffle <Album name>'")
 
     elif message.content.startswith(".random"):
         Command = message.content.split(' ')
@@ -142,7 +146,7 @@ async def on_message(message):
         Album = random.choice(Keys)
 
         for Element in Data[Album]:
-            await Client.send_message(message.channel, PlayCommand + " " + Element)
+            await Client.send_message(DefaultChannel, PlayCommand + " " + Element)
             await asyncio.sleep(CommandDelay)
 
     elif message.content.startswith(".help"):
@@ -159,20 +163,21 @@ async def on_message(message):
         HelpMessage += "-----End Help-----\n"
         HelpMessage += "```"
         
-        await Client.send_message(message.channel, HelpMessage)
+        await Client.send_message(DefaultChannel, HelpMessage)
 
 with open("Data/Albums.json", mode="r") as JsonFile:
     Data = json.load(JsonFile)
 
 with open("Data/Data.dat", mode="r") as AccountFile:
     Lines = AccountFile.readlines()
-    if len(Lines) == 4:
+    if len(Lines) == 5:
         Username = Lines[0][0:-1]
         Password = Lines[1][0:-1]
         ChannelID = Lines[2][0:-1]
-        PlayCommand = Lines[3]
+        PlayCommand = Lines[3][0:-1]
+        DefaultTextChannel = Lines[4]
     else:
-        print("Useage: Data/Data.dat -> \n<Email>\n<Password>\n<Default voice channel ID>\n<Play command>")
+        print("Useage: Data/Data.dat -> \n<Email>\n<Password>\n<Default voice channel ID>\n<Play command>\n<Default text channel ID>")
         sys.exit(0)
 
 Client.run(Username, Password)
