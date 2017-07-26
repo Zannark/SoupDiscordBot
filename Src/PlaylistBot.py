@@ -17,7 +17,7 @@ Password = ""
 ChannelID = ""
 PlayCommand = ""
 DefaultTextChannel = ""
-DefaultChannel = None
+#DefaultChannel = None
 
 @Client.event
 async def on_ready():
@@ -88,6 +88,7 @@ async def on_message(message):
 
         if len(Command) == 2:
             if Command[1] in Data:
+                await Client.send_message(DefaultChannel, "Playing album: " + Command[1])
                 for Element in Data[Command[1]]:
                     await Client.send_message(DefaultChannel, PlayCommand + " " + Element)
                     await asyncio.sleep(CommandDelay)
@@ -144,6 +145,7 @@ async def on_message(message):
             if Command[1] in Data:
                 Shuffled = Data[Command[1]]
                 random.shuffle(Shuffled)
+                await Client.send_message(DefaultChannel, "Playing album: " + Command[1])
                 
                 for Element in Shuffled:
                     await Client.send_message(DefaultChannel, PlayCommand + " " + Element)
@@ -158,6 +160,8 @@ async def on_message(message):
 
         Keys = list(Data.keys())
         Album = random.choice(Keys)
+
+        await Client.send_message(DefaultChannel, "Playing album: " + Albums)
 
         for Element in Data[Album]:
             await Client.send_message(DefaultChannel, PlayCommand + " " + Element)
