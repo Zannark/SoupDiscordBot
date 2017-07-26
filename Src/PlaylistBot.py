@@ -24,11 +24,25 @@ async def on_ready():
     C = Client.get_channel(ChannelID)
     await Client.join_voice_channel(C)
 
+    DefaultChannel = Client.get_channel(DefaultTextChannel)
+    await Client.send_message(DefaultChannel, "Bot is ready")
+
     print("Album bot is ready for use!")
+    
 
 @Client.event
 async def on_message(message):
     DefaultChannel = Client.get_channel(DefaultTextChannel)
+
+    Number = random.randint(1, 1000) 
+    if Number == 5 or Number == 999:
+        await Client.send_message(message.channel, "@here ayyyyyyyyy this is a number: " + str(Number))
+    elif Number == 1:
+        await Client.send_message(message.channel, "@everyone The number was 1.")
+
+    Number = random.randint(1, 1000000)
+    if Number == 69:
+        await Client.send_message(message.channel, "@everyone Meme")
     
     if message.content.startswith('.summon'):
         C = Client.get_channel(ChannelID)
