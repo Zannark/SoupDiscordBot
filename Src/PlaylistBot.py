@@ -161,7 +161,7 @@ async def on_message(message):
         Keys = list(Data.keys())
         Album = random.choice(Keys)
 
-        await Client.send_message(DefaultChannel, "Playing album: " + Albums)
+        await Client.send_message(DefaultChannel, "Playing album: " + Album)
 
         for Element in Data[Album]:
             await Client.send_message(DefaultChannel, PlayCommand + " " + Element)
