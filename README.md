@@ -33,3 +33,5 @@ CommandDelay = 2
       V
 CommandDelay = 0.75
 ```
+
+The bot does not need any special permissions as long as it can use the commands to play music.
