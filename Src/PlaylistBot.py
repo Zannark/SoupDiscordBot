@@ -46,6 +46,10 @@ async def on_message(message):
 
     if "LENNY" in message.content.upper():
         await Client.send_message(message.channel, "( ͡° ͜ʖ ͡°)")
+
+    if "CASUAL" in message.content.upper() and Client.user.name != message.author.name:
+        await Client.send_message(message.channel, "ewwwwwwww @everyone, " + message.author.name + " is a filthy casual")
+        await Client.send_file(message.channel, "Data//Casuals.png")
     
     if message.content.startswith('.summon'):
         C = Client.get_channel(ChannelID)
