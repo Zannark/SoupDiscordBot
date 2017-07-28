@@ -43,6 +43,9 @@ async def on_message(message):
     Number = random.randint(1, 1000000)
     if Number == 69:
         await Client.send_message(message.channel, "@everyone Meme")
+
+    if "LENNY" in message.content.upper():
+        await Client.send_message(message.channel, "( ͡° ͜ʖ ͡°)")
     
     if message.content.startswith('.summon'):
         C = Client.get_channel(ChannelID)
