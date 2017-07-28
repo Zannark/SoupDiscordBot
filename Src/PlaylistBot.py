@@ -17,7 +17,6 @@ Password = ""
 ChannelID = ""
 PlayCommand = ""
 DefaultTextChannel = ""
-#DefaultChannel = None
 
 @Client.event
 async def on_ready():
