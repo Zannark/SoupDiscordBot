@@ -5,6 +5,7 @@ This bot requires Python 3.x and was tested on Python 3.5.2. [The Python downloa
 1) Download or clone the bot
 2) Run Install.bat
 3) Follow instructions in command prompt
+4) Place an image into the Data folder and rename it to "Casuals.png". 
 
 Providing that nothing went wrong the bot should be useable.
 
