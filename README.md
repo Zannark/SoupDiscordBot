@@ -26,7 +26,7 @@ Run the bot using the Run.bat script.
 |.shuffle [Album name]|Plays the album in a random order|
 |.view [(Optional) Album name]| Views the album or all of the album titles|
 
-The delay between messages sent is 2 seconds, because some music bots don't pick up the command if they're sent to quickly. Should you want to change the delay you must modify a variable then you must: open Src/Playlist.py in a test editor (e.g. VScode or Notepad++) and modify the follwing found at the top of the program.
+The delay between messages sent is 2 seconds, because some music bots don't pick up the command if they're sent to quickly. Should you want to change the delay you must modify a variable then you must: open Src/Playlist.py in a text editor (e.g. VScode or Notepad++) and modify the follwing found at the top of the program.
 ```python
 #Change the 2 to another value. The value must be in seconds. 
 #You can have decimal values (e.g. 1.5 for one and a half seconds).
